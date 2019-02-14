@@ -16,6 +16,7 @@ class AddItemViewController: UITableViewController {
     
     @IBAction func cancel(_ sender: Any) {
         dismiss(animated: true)
+        
     }
 
     @IBOutlet weak var itemLabel: UITextField!
