@@ -18,5 +18,6 @@ class AddItemViewController: UITableViewController {
         dismiss(animated: true)
     }
 
- 
+    @IBOutlet weak var itemLabel: UITextField!
+    
 }
