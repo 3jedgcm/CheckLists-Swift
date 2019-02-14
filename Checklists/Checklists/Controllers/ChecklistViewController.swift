@@ -39,17 +39,19 @@ class ChecklistViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return itemList.count;
+        return itemList.count;	
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.itemList[indexPath.row].toggleChecked()
+        tableView.reloadRows(at:[indexPath],with: UITableView.RowAnimation.automatic)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "ChecklistItem", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ChecklistItem", for: indexPath)
         self.configureCheckmark(for:cell, withItem: itemList[indexPath.row])
         self.configureText(for:cell, withItem: itemList[indexPath.row])
         

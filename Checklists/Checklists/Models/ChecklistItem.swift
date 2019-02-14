@@ -22,4 +22,9 @@ class CheckListItem {
         self.text = text;
         self.checked = checked;
     }
+    
+    func toggleChecked()
+    {
+        self.checked = !self.checked
+    }
 }
