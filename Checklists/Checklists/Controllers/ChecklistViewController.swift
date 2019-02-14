@@ -48,6 +48,10 @@ class ChecklistViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    @IBAction func addDummyTodo(_ sender: Any) {
+        itemList.insert(CheckListItem(text: "Bonbon"), at: 0)
+        tableView.insertRows(at: [IndexPath(item: 0, section: 0)], with: UITableView.RowAnimation.automatic)
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
