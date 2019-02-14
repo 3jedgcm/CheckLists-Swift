@@ -1,5 +1,5 @@
 //
-//  TableViewController.swift
+//  AddItemViewController.swift
 //  Checklists
 //
 //  Created by lpiem on 14/02/2019.
@@ -10,9 +10,12 @@ import UIKit
 
 class AddItemViewController: UITableViewController {
 
-
-    
-    @IBAction func cancel() {
-        self.dismiss(animated: true)
+    @IBAction func done(_ sender: Any) {
+        dismiss(animated: true)
     }
+    
+    @IBAction func cancel(_ sender: Any) {
+        dismiss(animated: true)
+    }
+
 }
