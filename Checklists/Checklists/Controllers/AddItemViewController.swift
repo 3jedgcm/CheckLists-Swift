@@ -20,4 +20,7 @@ class AddItemViewController: UITableViewController {
 
     @IBOutlet weak var itemLabel: UITextField!
     
+    override func viewWillAppear(_ animated: Bool) {
+        itemLabel.becomeFirstResponder()
+    }
 }
