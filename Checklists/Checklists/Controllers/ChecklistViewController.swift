@@ -32,7 +32,8 @@ class ChecklistViewController: UITableViewController {
             let destVC = navVC.topViewController as! AddItemViewController
             destVC.delegate = self
             destVC.doneButton.isEnabled = true
-            
+            let indexPathOfSelectedCell = self.tableView.indexPath(for: (sender  as! ChecklistItemCell))
+            destVC.itemToEdit = itemList[indexPathOfSelectedCell!.row]
         }
     }
     
@@ -91,6 +92,12 @@ class ChecklistViewController: UITableViewController {
 
 extension ChecklistViewController: AddItemViewControllerDelegate {
     func addItemViewControllerDidCancel(_ controller: AddItemViewController) {
+        dismiss(animated: true)
+    }
+    
+    func addItemViewController(_ controller: AddItemViewController, didFinishEditingItem item: ChecklistItem) {
+        let indexOfEditedItem = itemList.index(where:{ $0 === item })
+        tableView.reloadRows(at:[IndexPath(row: indexOfEditedItem!, section: 0)],with: UITableView.RowAnimation.automatic)
         dismiss(animated: true)
     }
     

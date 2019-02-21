@@ -13,11 +13,26 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
     
     @IBOutlet weak var doneButton: UIBarButtonItem!
     @IBOutlet weak var itemLabel: UITextField!
+    var itemToEdit: ChecklistItem!
     
-    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        if(itemToEdit != nil)
+        {
+            itemLabel.text = itemToEdit.text
+        }
+    }
     
     @IBAction func done(_ sender: Any) {
-        self.delegate?.addItemViewController(self, didFinishAddingItem: ChecklistItem(text: itemLabel.text!))
+        if(itemToEdit != nil)
+        {
+             itemToEdit.text = itemLabel.text!
+             self.delegate?.addItemViewController(self, didFinishEditingItem: itemToEdit)
+        } else
+        {
+          self.delegate?.addItemViewController(self, didFinishAddingItem: ChecklistItem(text: itemLabel.text!))
+        }
+     
     }
     
     @IBAction func cancel(_ sender: Any) {
@@ -47,5 +62,5 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
 protocol AddItemViewControllerDelegate : class {
     func addItemViewControllerDidCancel(_ controller: AddItemViewController)
     func addItemViewController(_ controller: AddItemViewController, didFinishAddingItem item: ChecklistItem)
-    
+    func addItemViewController(_ controller:AddItemViewController, didFinishEditingItem item:ChecklistItem)
 }
