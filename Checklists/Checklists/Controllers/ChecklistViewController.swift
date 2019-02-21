@@ -26,6 +26,13 @@ class ChecklistViewController: UITableViewController {
             let navVC = segue.destination as! UINavigationController
             let destVC = navVC.topViewController as! AddItemViewController
             destVC.delegate = self
+            destVC.doneButton.isEnabled = false
+        } else if(segue.identifier == "editItem") {
+            let navVC = segue.destination as! UINavigationController
+            let destVC = navVC.topViewController as! AddItemViewController
+            destVC.delegate = self
+            destVC.doneButton.isEnabled = true
+            
         }
     }
     
@@ -34,20 +41,17 @@ class ChecklistViewController: UITableViewController {
     {
         if(item.checked)
         {
-            checkLabel.isHidden = false
-            //cell.accessoryType = UITableViewCell.AccessoryType.checkmark
+            (cell as! ChecklistItemCell).checkNameLabel.isHidden = false
         }
         else
         {
-            checkLabel.isHidden = true
-            //cell.accessoryType = UITableViewCell.AccessoryType.none
+            (cell as! ChecklistItemCell).checkNameLabel.isHidden = true
         }
     }
     
     func configureText(for cell: UITableViewCell, withItem item: ChecklistItem)
     {
-        //cell.textLabel?.text = item.text
-        nameLabel.text = item.text
+        (cell as! ChecklistItemCell).textNameLabel.text = item.text
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int

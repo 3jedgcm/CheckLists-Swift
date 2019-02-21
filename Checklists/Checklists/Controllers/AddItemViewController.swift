@@ -8,11 +8,12 @@
 
 import UIKit
 
-class AddItemViewController: UITableViewController {
+class AddItemViewController: UITableViewController, UITextFieldDelegate {
     var delegate: AddItemViewControllerDelegate?
     
     @IBOutlet weak var doneButton: UIBarButtonItem!
     @IBOutlet weak var itemLabel: UITextField!
+    
     
     
     @IBAction func done(_ sender: Any) {
