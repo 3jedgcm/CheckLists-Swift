@@ -11,7 +11,6 @@ import UIKit
 class ChecklistViewController: UITableViewController {
     
 
-
     var itemList: [ChecklistItem] = [];
     
     override func viewDidLoad() {
@@ -35,17 +34,20 @@ class ChecklistViewController: UITableViewController {
     {
         if(item.checked)
         {
-            cell.accessoryType = UITableViewCell.AccessoryType.checkmark
+            checkLabel.isHidden = false
+            //cell.accessoryType = UITableViewCell.AccessoryType.checkmark
         }
         else
         {
-            cell.accessoryType = UITableViewCell.AccessoryType.none
+            checkLabel.isHidden = true
+            //cell.accessoryType = UITableViewCell.AccessoryType.none
         }
     }
     
     func configureText(for cell: UITableViewCell, withItem item: ChecklistItem)
     {
-        cell.textLabel?.text = item.text
+        //cell.textLabel?.text = item.text
+        nameLabel.text = item.text
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -89,6 +91,8 @@ extension ChecklistViewController: AddItemViewControllerDelegate {
     }
     
     func addItemViewController(_ controller: AddItemViewController, didFinishAddingItem item: ChecklistItem) {
-     
+        itemList.insert(item, at: 0)
+        tableView.insertRows(at: [IndexPath(item: 0, section: 0)], with: UITableView.RowAnimation.automatic)
+        dismiss(animated: true)
     }
 }

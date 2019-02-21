@@ -12,15 +12,15 @@ class AddItemViewController: UITableViewController {
     var delegate: AddItemViewControllerDelegate?
     
     @IBOutlet weak var doneButton: UIBarButtonItem!
+    @IBOutlet weak var itemLabel: UITextField!
     
     
     @IBAction func done(_ sender: Any) {
-        self.delegate?.addItemViewControllerDidCancel(self)
+        self.delegate?.addItemViewController(self, didFinishAddingItem: ChecklistItem(text: itemLabel.text!))
     }
     
     @IBAction func cancel(_ sender: Any) {
-        dismiss(animated: true)
-        
+        self.delegate?.addItemViewControllerDidCancel(self)
     }
     
     func textField(_ textField: UITextField,
@@ -37,7 +37,6 @@ class AddItemViewController: UITableViewController {
         return true
     }
 
-    @IBOutlet weak var itemLabel: UITextField!
     
     override func viewWillAppear(_ animated: Bool) {
         itemLabel.becomeFirstResponder()

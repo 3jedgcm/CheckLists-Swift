@@ -10,6 +10,9 @@ import UIKit
 
 class ChecklistItemCell: UITableViewCell {
 
+    @IBOutlet weak var checkNameLabel: UITextField!
+    @IBOutlet weak var textNameLabel: UITextField!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

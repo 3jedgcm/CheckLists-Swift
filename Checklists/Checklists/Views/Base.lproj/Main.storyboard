@@ -17,13 +17,50 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="ChecklistItem" id="ADh-ET-DLb">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="ChecklistItem" id="ADh-ET-DLb" customClass="ChecklistItemCell" customModule="Checklists" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ADh-ET-DLb" id="b07-t7-ffu">
-                                    <rect key="frame" x="0.0" y="0.0" width="335" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="307" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="✔" borderStyle="roundedRect" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="scg-Xz-jYR">
+                                            <rect key="frame" x="0.0" y="7" width="37" height="30"/>
+                                            <accessibility key="accessibilityConfiguration" identifier="checkLabel"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="30" id="BVZ-M9-LNR"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="37" id="IlX-vs-M2F"/>
+                                                <constraint firstAttribute="width" constant="37" id="Qe4-vA-Jnk"/>
+                                                <constraint firstAttribute="height" constant="30" id="Y5a-eG-dYN"/>
+                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="37" id="cFL-Zn-Ni6"/>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="mGv-ds-1JJ"/>
+                                            </constraints>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KSX-nm-jWd">
+                                            <rect key="frame" x="45" y="7" width="262" height="30"/>
+                                            <accessibility key="accessibilityConfiguration" identifier="labelName"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="scg-Xz-jYR" firstAttribute="centerY" secondItem="b07-t7-ffu" secondAttribute="centerY" id="561-th-Mm7"/>
+                                        <constraint firstItem="KSX-nm-jWd" firstAttribute="leading" secondItem="scg-Xz-jYR" secondAttribute="trailing" id="BtG-gn-rOo"/>
+                                        <constraint firstItem="KSX-nm-jWd" firstAttribute="leading" secondItem="scg-Xz-jYR" secondAttribute="trailing" constant="8" id="PI7-6Y-k4Q"/>
+                                        <constraint firstItem="scg-Xz-jYR" firstAttribute="leading" secondItem="b07-t7-ffu" secondAttribute="leading" id="XN5-To-fdL"/>
+                                        <constraint firstAttribute="trailing" secondItem="KSX-nm-jWd" secondAttribute="trailing" id="jJb-zP-3NY"/>
+                                        <constraint firstItem="KSX-nm-jWd" firstAttribute="centerY" secondItem="b07-t7-ffu" secondAttribute="centerY" id="ncd-P3-qQW"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="checkNameLabel" destination="scg-Xz-jYR" id="hHd-yK-Npe"/>
+                                    <outlet property="textLabel" destination="KSX-nm-jWd" id="CZZ-s2-wWT"/>
+                                    <outlet property="textNameLabel" destination="KSX-nm-jWd" id="mQK-DH-SbN"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -38,6 +75,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="checkLabel" destination="scg-Xz-jYR" id="SrB-am-QDr"/>
+                        <outlet property="nameLabel" destination="KSX-nm-jWd" id="ltF-54-KW6"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gQi-ck-330" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -90,17 +131,16 @@
                     <navigationItem key="navigationItem" id="C69-cO-EUt">
                         <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="hpe-Of-Yba">
                             <connections>
-                                <action selector="done:" destination="gZX-U2-rLa" id="Bst-8I-vIF"/>
+                                <action selector="cancel:" destination="gZX-U2-rLa" id="1RE-cR-aBv"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="done" id="chv-do-3hh">
                             <connections>
-                                <action selector="cancel:" destination="gZX-U2-rLa" id="dwq-zt-MEq"/>
+                                <action selector="done:" destination="gZX-U2-rLa" id="Q8V-MO-7HO"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="doneButton" destination="chv-do-3hh" id="WQj-yr-YIJ"/>
                         <outlet property="itemLabel" destination="aZR-ZZ-WvL" id="ZqB-Bu-dxv"/>
                     </connections>
                 </tableViewController>
