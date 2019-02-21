@@ -24,42 +24,43 @@
                                     <rect key="frame" x="0.0" y="0.0" width="307" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="✔" borderStyle="roundedRect" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="scg-Xz-jYR">
-                                            <rect key="frame" x="0.0" y="7" width="37" height="30"/>
-                                            <accessibility key="accessibilityConfiguration" identifier="checkLabel"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="✔️" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nY8-6K-pNz">
+                                            <rect key="frame" x="16" y="11" width="23" height="21"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="30" id="BVZ-M9-LNR"/>
-                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="37" id="IlX-vs-M2F"/>
-                                                <constraint firstAttribute="width" constant="37" id="Qe4-vA-Jnk"/>
-                                                <constraint firstAttribute="height" constant="30" id="Y5a-eG-dYN"/>
-                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="37" id="cFL-Zn-Ni6"/>
-                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="mGv-ds-1JJ"/>
+                                                <constraint firstAttribute="width" constant="23" id="0wD-41-jGL"/>
+                                                <constraint firstAttribute="height" constant="21" id="DHf-P6-xJ9"/>
                                             </constraints>
-                                            <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KSX-nm-jWd">
-                                            <rect key="frame" x="45" y="7" width="262" height="30"/>
-                                            <accessibility key="accessibilityConfiguration" identifier="labelName"/>
                                             <nil key="textColor"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AYU-ca-cWs">
+                                            <rect key="frame" x="39" y="11" width="268" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="ai9-lq-mf7"/>
+                                                <constraint firstAttribute="width" constant="42" id="uIb-Bu-eZb"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="scg-Xz-jYR" firstAttribute="centerY" secondItem="b07-t7-ffu" secondAttribute="centerY" id="561-th-Mm7"/>
-                                        <constraint firstItem="KSX-nm-jWd" firstAttribute="leading" secondItem="scg-Xz-jYR" secondAttribute="trailing" id="BtG-gn-rOo"/>
-                                        <constraint firstItem="KSX-nm-jWd" firstAttribute="leading" secondItem="scg-Xz-jYR" secondAttribute="trailing" constant="8" id="PI7-6Y-k4Q"/>
-                                        <constraint firstItem="scg-Xz-jYR" firstAttribute="leading" secondItem="b07-t7-ffu" secondAttribute="leading" id="XN5-To-fdL"/>
-                                        <constraint firstAttribute="trailing" secondItem="KSX-nm-jWd" secondAttribute="trailing" id="jJb-zP-3NY"/>
-                                        <constraint firstItem="KSX-nm-jWd" firstAttribute="centerY" secondItem="b07-t7-ffu" secondAttribute="centerY" id="ncd-P3-qQW"/>
+                                        <constraint firstItem="nY8-6K-pNz" firstAttribute="top" secondItem="b07-t7-ffu" secondAttribute="topMargin" id="5fG-8b-ahD"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="AYU-ca-cWs" secondAttribute="trailing" id="BBo-zA-Rya"/>
+                                        <constraint firstItem="AYU-ca-cWs" firstAttribute="bottom" secondItem="b07-t7-ffu" secondAttribute="bottomMargin" id="SyI-w9-tuo"/>
+                                        <constraint firstItem="AYU-ca-cWs" firstAttribute="top" secondItem="b07-t7-ffu" secondAttribute="topMargin" id="TaH-aR-ap6"/>
+                                        <constraint firstItem="nY8-6K-pNz" firstAttribute="leading" secondItem="b07-t7-ffu" secondAttribute="leadingMargin" id="VKC-gk-7Fa"/>
+                                        <constraint firstItem="AYU-ca-cWs" firstAttribute="leading" secondItem="nY8-6K-pNz" secondAttribute="trailing" constant="8" id="aoE-I9-U3e"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="AYU-ca-cWs" secondAttribute="trailing" id="lwP-44-oAC"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="nY8-6K-pNz" secondAttribute="bottom" id="sMC-EQ-Qli"/>
+                                        <constraint firstItem="AYU-ca-cWs" firstAttribute="leading" secondItem="nY8-6K-pNz" secondAttribute="trailing" id="zzM-9E-IcE"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="checkNameLabel" destination="scg-Xz-jYR" id="hHd-yK-Npe"/>
-                                    <outlet property="textLabel" destination="KSX-nm-jWd" id="CZZ-s2-wWT"/>
-                                    <outlet property="textNameLabel" destination="KSX-nm-jWd" id="mQK-DH-SbN"/>
+                                    <outlet property="checkNameLabel" destination="nY8-6K-pNz" id="aPC-50-wEf"/>
+                                    <outlet property="textNameLabel" destination="AYU-ca-cWs" id="ubt-OU-Tv6"/>
+                                    <segue destination="ioP-NC-kee" kind="presentation" identifier="editItem" trigger="accessoryAction" id="9o6-O4-6V5"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -75,10 +76,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="checkLabel" destination="scg-Xz-jYR" id="SrB-am-QDr"/>
-                        <outlet property="nameLabel" destination="KSX-nm-jWd" id="ltF-54-KW6"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gQi-ck-330" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -109,6 +106,7 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                     <connections>
                                                         <action selector="done:" destination="gZX-U2-rLa" eventType="editingDidEndOnExit" id="2y1-bz-X1Q"/>
+                                                        <outlet property="delegate" destination="gZX-U2-rLa" id="y7b-tE-VEG"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -141,6 +139,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="doneButton" destination="chv-do-3hh" id="Tso-Hx-TOv"/>
                         <outlet property="itemLabel" destination="aZR-ZZ-WvL" id="ZqB-Bu-dxv"/>
                     </connections>
                 </tableViewController>
@@ -185,4 +184,7 @@
             <point key="canvasLocation" x="3172" y="-582.45877061469275"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="9o6-O4-6V5"/>
+    </inferredMetricsTieBreakers>
 </document>
