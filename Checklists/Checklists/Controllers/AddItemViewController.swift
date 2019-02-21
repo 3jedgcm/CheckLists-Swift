@@ -9,12 +9,13 @@
 import UIKit
 
 class AddItemViewController: UITableViewController {
-
+    var delegate: AddItemViewControllerDelegate?
+    
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
     
     @IBAction func done(_ sender: Any) {
-        dismiss(animated: true)
+        self.delegate?.addItemViewControllerDidCancel(self)
     }
     
     @IBAction func cancel(_ sender: Any) {

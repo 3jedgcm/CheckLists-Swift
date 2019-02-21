@@ -9,18 +9,29 @@
 import UIKit
 
 class ChecklistViewController: UITableViewController {
+    
 
-    var itemList: [CheckListItem] = [];
+
+    var itemList: [ChecklistItem] = [];
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        itemList.append(CheckListItem(text: "Cookie"))
-        itemList.append(CheckListItem(text: "Mashmallow"))
-        itemList.append(CheckListItem(text: "Candy"))
+        itemList.append(ChecklistItem(text: "Cookie"))
+        itemList.append(ChecklistItem(text: "Mashmallow"))
+        itemList.append(ChecklistItem(text: "Candy"))
         // Do any additional setup after loading the view, typically from a nib.
     }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "addItem") {
+            let navVC = segue.destination as! UINavigationController
+            let destVC = navVC.topViewController as! AddItemViewController
+            destVC.delegate = self
+        }
+    }
     
-    func configureCheckmark(for cell: UITableViewCell, withItem item: CheckListItem)
+    
+    func configureCheckmark(for cell: UITableViewCell, withItem item: ChecklistItem)
     {
         if(item.checked)
         {
@@ -32,7 +43,7 @@ class ChecklistViewController: UITableViewController {
         }
     }
     
-    func configureText(for cell: UITableViewCell, withItem item: CheckListItem)
+    func configureText(for cell: UITableViewCell, withItem item: ChecklistItem)
     {
         cell.textLabel?.text = item.text
     }
@@ -49,7 +60,7 @@ class ChecklistViewController: UITableViewController {
     }
     
     @IBAction func addDummyTodo(_ sender: Any) {
-        itemList.insert(CheckListItem(text: "Bonbon"), at: 0)
+        itemList.insert(ChecklistItem(text: "Bonbon"), at: 0)
         tableView.insertRows(at: [IndexPath(item: 0, section: 0)], with: UITableView.RowAnimation.automatic)
     }
     
@@ -66,7 +77,18 @@ class ChecklistViewController: UITableViewController {
         itemList.remove(at:indexPath.row)
         tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
     }
+    
+
 
 
 }
 
+extension ChecklistViewController: AddItemViewControllerDelegate {
+    func addItemViewControllerDidCancel(_ controller: AddItemViewController) {
+        dismiss(animated: true)
+    }
+    
+    func addItemViewController(_ controller: AddItemViewController, didFinishAddingItem item: ChecklistItem) {
+     
+    }
+}
