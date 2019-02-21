@@ -42,3 +42,9 @@ class AddItemViewController: UITableViewController {
         itemLabel.becomeFirstResponder()
     }
 }
+
+protocol AddItemViewControllerDelegate : class {
+    func addItemViewControllerDidCancel(_ controller: AddItemViewController)
+    func addItemViewController(_ controller: AddItemViewController, didFinishAddingItem item: ChecklistItem)
+    
+}
