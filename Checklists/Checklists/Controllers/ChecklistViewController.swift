@@ -11,29 +11,29 @@ import UIKit
 class ChecklistViewController: UITableViewController {
     
 
-    var itemList: [ChecklistItem] = [];
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        itemList.append(ChecklistItem(text: "Cookie"))
-        itemList.append(ChecklistItem(text: "Mashmallow"))
-        itemList.append(ChecklistItem(text: "Candy"))
-        // Do any additional setup after loading the view, typically from a nib.
-    }
 
+     var list: Checklist!
+
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "addItem") {
+        
+         if(segue.identifier == "addItem") {
             let navVC = segue.destination as! UINavigationController
-            let destVC = navVC.topViewController as! AddItemViewController
+            let destVC = navVC.topViewController as! ItemDetailViewController
             destVC.delegate = self
             destVC.doneButton.isEnabled = false
         } else if(segue.identifier == "editItem") {
             let navVC = segue.destination as! UINavigationController
-            let destVC = navVC.topViewController as! AddItemViewController
+            let destVC = navVC.topViewController as! ItemDetailViewController
             destVC.delegate = self
             destVC.doneButton.isEnabled = true
             let indexPathOfSelectedCell = self.tableView.indexPath(for: (sender  as! ChecklistItemCell))
-            destVC.itemToEdit = itemList[indexPathOfSelectedCell!.row]
+            destVC.itemToEdit = list.list[indexPathOfSelectedCell!.row]
         }
     }
     
@@ -57,52 +57,46 @@ class ChecklistViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return itemList.count;	
+        return list.list.count;
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.itemList[indexPath.row].toggleChecked()
+        self.list.list[indexPath.row].toggleChecked()
         tableView.reloadRows(at:[indexPath],with: UITableView.RowAnimation.automatic)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    @IBAction func addDummyTodo(_ sender: Any) {
-        itemList.insert(ChecklistItem(text: "Bonbon"), at: 0)
-        tableView.insertRows(at: [IndexPath(item: 0, section: 0)], with: UITableView.RowAnimation.automatic)
-    }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChecklistItem", for: indexPath)
-        self.configureCheckmark(for:cell, withItem: itemList[indexPath.row])
-        self.configureText(for:cell, withItem: itemList[indexPath.row])
-        
+        self.configureCheckmark(for:cell, withItem: list.list[indexPath.row])
+        self.configureText(for:cell, withItem: list.list[indexPath.row])
         return cell
+        
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        itemList.remove(at:indexPath.row)
+        list.list.remove(at:indexPath.row)
         tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
     }
     
 
-
-
 }
 
-extension ChecklistViewController: AddItemViewControllerDelegate {
-    func addItemViewControllerDidCancel(_ controller: AddItemViewController) {
+extension ChecklistViewController: ItemDetailViewControllerDelegate {
+    func itemDetailViewControllerDidCancel(_ controller: ItemDetailViewController) {
         dismiss(animated: true)
     }
     
-    func addItemViewController(_ controller: AddItemViewController, didFinishEditingItem item: ChecklistItem) {
-        let indexOfEditedItem = itemList.index(where:{ $0 === item })
+    func itemDetailViewController(_ controller: ItemDetailViewController, didFinishEditingItem item: ChecklistItem) {
+        let indexOfEditedItem = list.list.index(where:{ $0 === item })
         tableView.reloadRows(at:[IndexPath(row: indexOfEditedItem!, section: 0)],with: UITableView.RowAnimation.automatic)
         dismiss(animated: true)
     }
     
-    func addItemViewController(_ controller: AddItemViewController, didFinishAddingItem item: ChecklistItem) {
-        itemList.insert(item, at: 0)
+    func itemDetailViewController(_ controller: ItemDetailViewController, didFinishAddingItem item: ChecklistItem) {
+        list.list.insert(item, at: 0)
         tableView.insertRows(at: [IndexPath(item: 0, section: 0)], with: UITableView.RowAnimation.automatic)
         dismiss(animated: true)
     }
