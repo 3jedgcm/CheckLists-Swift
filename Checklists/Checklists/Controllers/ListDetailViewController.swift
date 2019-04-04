@@ -11,17 +11,28 @@ import UIKit
 class ListDetailViewController: UITableViewController, UITextFieldDelegate {
     var delegate: ListDetailViewControllerDelegate?
     
+    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var doneButton: UIBarButtonItem!
     @IBOutlet weak var itemLabel: UITextField!
     
     var itemToEdit: Checklist!
-  
+    var currentSelectedIcon = IconAsset.Folder
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        imageView.image = currentSelectedIcon.image
         if(itemToEdit != nil)
         {
+            imageView.image = itemToEdit.icon.image
             itemLabel.text = itemToEdit.name
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if(segue.identifier == "edit") {
+            let navVC = segue.destination as! IconPickerViewController
+            navVC.delegate = self
         }
     }
     
@@ -29,10 +40,11 @@ class ListDetailViewController: UITableViewController, UITextFieldDelegate {
         if(itemToEdit != nil)
         {
             itemToEdit.name = itemLabel.text!
+            itemToEdit.icon = currentSelectedIcon
             self.delegate?.listDetailViewController(self, didFinishEditingItem: itemToEdit)
         } else
         {
-            self.delegate?.listDetailViewController(self, didFinishAddingItem: Checklist(list: [], name: itemLabel.text!, icon: IconAsset.Birthdays))
+            self.delegate?.listDetailViewController(self, didFinishAddingItem: Checklist(list: [], name: itemLabel.text!, icon: currentSelectedIcon))
         }
         
     }
@@ -67,3 +79,21 @@ protocol ListDetailViewControllerDelegate : class {
     func listDetailViewController(_ controller: ListDetailViewController, didFinishAddingItem item: Checklist)
     func listDetailViewController(_ controller: ListDetailViewController, didFinishEditingItem item: Checklist)
 }
+
+extension ListDetailViewController: IconPickerViewControllerDelegate {
+    func iconPickerViewControllerDidCancel(_ controller: IconPickerViewController) {
+        
+    }
+    
+    func iconPickerViewController(_ controller: IconPickerViewController, didFinishAddingItem item: IconAsset) {
+       
+        navigationController?.popViewController(animated: true)
+        imageView.image = controller.imageSelection.image
+        currentSelectedIcon = controller.imageSelection
+    }
+    
+    func listDetailViewController(_ controller: IconPickerViewController, didFinishEditingItem item: IconAsset) {
+        
+    }
+}
+

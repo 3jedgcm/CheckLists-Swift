@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0877668F2243880000D089EF /* IconPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0877668E2243880000D089EF /* IconPickerViewController.swift */; };
+		087766922243D78E00D089EF /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 087766912243D78E00D089EF /* UserNotifications.framework */; };
 		0898DF77221EB34400E89369 /* ChecklistItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0898DF76221EB34400E89369 /* ChecklistItemCell.swift */; };
 		0898DF79221EF2C600E89369 /* AllListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0898DF78221EF2C600E89369 /* AllListViewController.swift */; };
 		0898DF7B221EFDCA00E89369 /* Checklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0898DF7A221EFDCA00E89369 /* Checklist.swift */; };
@@ -17,12 +19,13 @@
 		08F0CABA2215746A003C965D /* ChecklistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F0CAB92215746A003C965D /* ChecklistViewController.swift */; };
 		08F0CABD2215746A003C965D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08F0CABB2215746A003C965D /* Main.storyboard */; };
 		08F0CABF2215746B003C965D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08F0CABE2215746B003C965D /* Assets.xcassets */; };
-		08F0CAC22215746B003C965D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08F0CAC02215746B003C965D /* LaunchScreen.storyboard */; };
 		08F0CACE22157A62003C965D /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F0CACD22157A62003C965D /* ChecklistItem.swift */; };
 		08F0CAD42215ABE3003C965D /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F0CAD32215ABE3003C965D /* ItemDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0877668E2243880000D089EF /* IconPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPickerViewController.swift; sourceTree = "<group>"; };
+		087766912243D78E00D089EF /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		0898DF76221EB34400E89369 /* ChecklistItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistItemCell.swift; sourceTree = "<group>"; };
 		0898DF78221EF2C600E89369 /* AllListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllListViewController.swift; sourceTree = "<group>"; };
 		0898DF7A221EFDCA00E89369 /* Checklist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checklist.swift; sourceTree = "<group>"; };
@@ -34,7 +37,6 @@
 		08F0CAB92215746A003C965D /* ChecklistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistViewController.swift; sourceTree = "<group>"; };
 		08F0CABC2215746A003C965D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		08F0CABE2215746B003C965D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		08F0CAC12215746B003C965D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		08F0CAC32215746B003C965D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		08F0CACD22157A62003C965D /* ChecklistItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistItem.swift; sourceTree = "<group>"; };
 		08F0CAD32215ABE3003C965D /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
@@ -45,12 +47,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				087766922243D78E00D089EF /* UserNotifications.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		087766902243D78E00D089EF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				087766912243D78E00D089EF /* UserNotifications.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		08C879FA223A8FA600DD87FC /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -65,6 +76,7 @@
 			children = (
 				08F0CAB62215746A003C965D /* Checklists */,
 				08F0CAB52215746A003C965D /* Products */,
+				087766902243D78E00D089EF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -96,6 +108,7 @@
 				08F0CAD32215ABE3003C965D /* ItemDetailViewController.swift */,
 				0898DF78221EF2C600E89369 /* AllListViewController.swift */,
 				08C879FD223A9B2200DD87FC /* ListDetailViewController.swift */,
+				0877668E2243880000D089EF /* IconPickerViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -103,7 +116,6 @@
 		08F0CACB221579E4003C965D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				08F0CAC02215746B003C965D /* LaunchScreen.storyboard */,
 				08F0CAB72215746A003C965D /* AppDelegate.swift */,
 				08F0CABB2215746A003C965D /* Main.storyboard */,
 			);
@@ -178,7 +190,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				08F0CAC22215746B003C965D /* LaunchScreen.storyboard in Resources */,
 				08F0CABF2215746B003C965D /* Assets.xcassets in Resources */,
 				08F0CABD2215746A003C965D /* Main.storyboard in Resources */,
 			);
@@ -196,6 +207,7 @@
 				08F0CABA2215746A003C965D /* ChecklistViewController.swift in Sources */,
 				08F0CAD42215ABE3003C965D /* ItemDetailViewController.swift in Sources */,
 				08F0CACE22157A62003C965D /* ChecklistItem.swift in Sources */,
+				0877668F2243880000D089EF /* IconPickerViewController.swift in Sources */,
 				08C879F9223A634200DD87FC /* DataModel.swift in Sources */,
 				08C879FC223A8FBB00DD87FC /* IconAsset.swift in Sources */,
 				08F0CAB82215746A003C965D /* AppDelegate.swift in Sources */,
@@ -213,14 +225,6 @@
 				08F0CABC2215746A003C965D /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		08F0CAC02215746B003C965D /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				08F0CAC12215746B003C965D /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

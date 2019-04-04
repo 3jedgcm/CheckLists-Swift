@@ -21,22 +21,31 @@ class DataModel
     var itemList: [Checklist] = []
     init()
     {
-        NotificationCenter.default.addObserver( self,selector: #selector(save),name: UIApplication.didEnterBackgroundNotification,object: nil)
-        documentDirectory = FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.allDomainsMask)[0]
-        dataFileUrl = documentDirectory?.appendingPathComponent("Checklists").appendingPathExtension("json")
+        UserDefaults.standard.register(defaults: ["firstLaunch":true])
+
+            NotificationCenter.default.addObserver( self,selector: #selector(save),name: UIApplication.didEnterBackgroundNotification,object: nil)
+            documentDirectory = FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.allDomainsMask)[0]
+            dataFileUrl = documentDirectory?.appendingPathComponent("Checklists").appendingPathExtension("json")
     }
     
     func load()
     {
-        let decoder = JSONDecoder()
-        do {
-            if(FileManager.default.fileExists(atPath: dataFileUrl!.path))
-            {
-                let data = try Data(contentsOf: dataFileUrl!)
-                itemList = try decoder.decode([Checklist].self, from: data)
+        if(UserDefaults.standard.bool(forKey: "firstLaunch"))
+        {
+            itemList = [Checklist(list: [ChecklistItem(text: "Default", checked: false)], name: "Default", icon: IconAsset.Folder)]
+        }
+        else
+        {
+            let decoder = JSONDecoder()
+            do {
+                if(FileManager.default.fileExists(atPath: dataFileUrl!.path))
+                {
+                    let data = try Data(contentsOf: dataFileUrl!)
+                    itemList = try decoder.decode([Checklist].self, from: data)
+                }
+            } catch {
+                print(error)
             }
-        } catch {
-            print(error)
         }
     }
     

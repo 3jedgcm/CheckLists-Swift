@@ -13,6 +13,8 @@ class ChecklistItemCell: UITableViewCell {
     @IBOutlet weak var textNameLabel: UILabel!
     @IBOutlet weak var checkNameLabel: UILabel!
     
+
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

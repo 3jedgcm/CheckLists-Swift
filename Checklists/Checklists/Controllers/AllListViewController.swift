@@ -15,10 +15,7 @@ class AllListViewController : UITableViewController
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
         DataSingleton.sharedInstance.load()
-        DataSingleton.sharedInstance.itemList.append(Checklist(list:[ChecklistItem(text: "Jambon")],name:"Vharcuterie",icon:IconAsset.Trips))
-        DataSingleton.sharedInstance.itemList.append(Checklist(list:[ChecklistItem(text: "Jambon")],name:"Aharcuterie",icon:IconAsset.Chores))
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -85,6 +82,7 @@ extension AllListViewController: ListDetailViewControllerDelegate {
     }
     
     func listDetailViewController(_ controller: ListDetailViewController, didFinishEditingItem item: Checklist) {
+        UserDefaults.standard.set(false, forKey: "firstLaunch")
         let indexOfEditedItem = DataSingleton.sharedInstance.itemList.index(where:{ $0 === item })
         tableView.reloadRows(at:[IndexPath(row: indexOfEditedItem!, section: 0)],with: UITableView.RowAnimation.automatic)
         dismiss(animated: true)
