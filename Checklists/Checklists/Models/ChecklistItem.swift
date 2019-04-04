@@ -11,6 +11,9 @@ import Foundation
 class ChecklistItem: Codable  {
     var text = "";
     var checked = false;
+    var itemId = 0;
+    var shouldRemind = false;
+    var dueDate = Date();
     
     init(text:String)
     {
@@ -21,6 +24,14 @@ class ChecklistItem: Codable  {
     {
         self.text = text;
         self.checked = checked;
+    }
+    
+    init(text:String, checked:Bool, shouldRemind: Bool, dueDate: Date)
+    {
+        self.text = text;
+        self.checked = checked;
+        self.shouldRemind = shouldRemind;
+        self.dueDate = dueDate;
     }
     
     func toggleChecked()

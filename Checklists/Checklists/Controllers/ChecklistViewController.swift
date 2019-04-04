@@ -10,18 +10,13 @@ import UIKit
 
 class ChecklistViewController: UITableViewController {
     
-
-
-     var list: Checklist!
-
+    var list: Checklist!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
          if(segue.identifier == "addItem") {
             let navVC = segue.destination as! UINavigationController
             let destVC = navVC.topViewController as! ItemDetailViewController
@@ -36,7 +31,6 @@ class ChecklistViewController: UITableViewController {
             destVC.itemToEdit = list.list[indexPathOfSelectedCell!.row]
         }
     }
-    
     
     func configureCheckmark(for cell: UITableViewCell, withItem item: ChecklistItem)
     {
@@ -65,7 +59,6 @@ class ChecklistViewController: UITableViewController {
         tableView.reloadRows(at:[indexPath],with: UITableView.RowAnimation.automatic)
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
@@ -73,14 +66,12 @@ class ChecklistViewController: UITableViewController {
         self.configureCheckmark(for:cell, withItem: list.list[indexPath.row])
         self.configureText(for:cell, withItem: list.list[indexPath.row])
         return cell
-        
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         list.list.remove(at:indexPath.row)
         tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
     }
-    
 
 }
 

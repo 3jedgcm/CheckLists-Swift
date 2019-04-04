@@ -9,8 +9,9 @@
 import UIKit
 import UserNotifications
 
+
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
 
@@ -21,36 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         center.requestAuthorization(options: [.alert, .sound])
         { (granted, error) in
-
+            
         }
-     
-        let content = UNMutableNotificationContent()
-        content.title = "Weekly Staff Meeting"
-        content.body = "Every Tuesday at 2pm"
-        // Configure the recurring date.
-        var dateComponents = DateComponents()
-        dateComponents = Calendar.current.dateComponents([.hour,.minute,.second],from:Date(timeIntervalSinceNow: 10))
-      
-  
-        
- 
- 
-        // Create the trigger as a repeating event.
-        let trigger = UNCalendarNotificationTrigger(
-            dateMatching: dateComponents, repeats: true)
-        
-        let uuidString = UUID().uuidString
-        let request = UNNotificationRequest(identifier: uuidString,
-                                            content: content, trigger: trigger)
-        
-        // Schedule the request with the system.
-        let notificationCenter = UNUserNotificationCenter.current()
-        notificationCenter.add(request) { (error) in
-            if error != nil {
-                // Handle any errors.
-            }
-        }
-        
+    
         return true
     }
 
@@ -70,6 +44,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        
+        /*
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Weekly Staff Meeting"
+        content.body = "Every Tuesday at 2pm"
+        // Configure the recurring date.
+        var dateComponents = DateComponents()
+        dateComponents = Calendar.current.dateComponents([.hour,.minute,.second],from:Date(timeIntervalSinceNow: 10))
+        
+        // Create the trigger as a repeating event.
+        let trigger = UNCalendarNotificationTrigger(
+            dateMatching: dateComponents, repeats: true)
+        
+        let uuidString = UUID().uuidString
+        let request = UNNotificationRequest(identifier: uuidString,
+                                            content: content, trigger: trigger)
+ 
+ 
+ */
 
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.add(notification.request) { (error) in
+            if error != nil {
+                // Handle any xerrors.
+            }
+        }
+    }
 }
 

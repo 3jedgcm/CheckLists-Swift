@@ -11,6 +11,9 @@ import UIKit
 class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
     var delegate: ItemDetailViewControllerDelegate?
     
+
+    @IBOutlet weak var dueDate: UIDatePicker!
+    @IBOutlet weak var dueSwitch: UISwitch!
     @IBOutlet weak var doneButton: UIBarButtonItem!
     @IBOutlet weak var itemLabel: UITextField!
     var itemToEdit: ChecklistItem!
@@ -26,13 +29,16 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
     @IBAction func done(_ sender: Any) {
         if(itemToEdit != nil)
         {
+             itemToEdit.itemId = PreferencesSingleton.sharedInstance.nextChecklistItemID()
+             itemToEdit.dueDate = dueDate.date
+             itemToEdit.shouldRemind = dueSwitch.isOn
              itemToEdit.text = itemLabel.text!
              self.delegate?.itemDetailViewController(self, didFinishEditingItem: itemToEdit)
-        } else
+        }
+        else
         {
           self.delegate?.itemDetailViewController(self, didFinishAddingItem: ChecklistItem(text: itemLabel.text!))
         }
-     
     }
     
     @IBAction func cancel(_ sender: Any) {
@@ -42,7 +48,6 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
     func textField(_ textField: UITextField,
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool {
-        
         let nsString = textField.text as NSString?
         let newString = nsString?.replacingCharacters(in: range, with: string)
         if(!newString!.isEmpty) {
